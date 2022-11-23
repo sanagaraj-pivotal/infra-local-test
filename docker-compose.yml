@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  source_control:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - './gitlab/config:/etc/gitlab'
+      - './gitlab/logs:/var/log/gitlab'
+      - './gitlab/data:/var/opt/gitlab'
+    shm_size: '2gb'
+  source_verify:
+    image: 'sonarqube'
+    container_name: sonarqube
+    restart: always
+    ports:
+      - '9000:9000'
