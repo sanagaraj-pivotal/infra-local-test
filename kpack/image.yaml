@@ -2,15 +2,15 @@
 apiVersion: kpack.io/v1alpha2
 kind: Image
 metadata:
-  name: spring-demo-app-image
+  name: spring-demo-app
   namespace: default
 spec:
-  tag: #@ "{}/spring-demo-app".format(data.values.dockerusername)
+  tag: #@ "{}/spring-demo".format(data.values.dockerusername)
   serviceAccountName: spring-demo-service-account
   builder:
     name: my-builder
     kind: Builder
   source:
     git:
-      url: https://github.com/spring-projects/spring-petclinic
-      revision: 82cb521d636b282340378d80a6307a08e3d4a4c4
+      url: https://gitlab.com/sanagaraj-pivotal/spring-demo.git
+      revision: 03d98387e1f67ca72b434aad70da7f0805ae62d4
