@@ -1,1 +1,1 @@
-docker build -t dind-jenkins:1 .
+docker build -t dind-jenkins:3 .
