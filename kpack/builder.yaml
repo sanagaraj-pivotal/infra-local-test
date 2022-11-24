@@ -4,8 +4,8 @@ metadata:
   name: my-builder
   namespace: default
 spec:
-  serviceAccountName: tutorial-service-account
-  tag: omocquais/builder-ipzs
+  serviceAccountName: spring-demo-service-account
+  tag: sandeepnvmware/builder-ipzs
   stack:
     name: base
     kind: ClusterStack

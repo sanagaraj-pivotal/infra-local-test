@@ -1,11 +1,12 @@
+#@ load("@ytt:data", "data")
 apiVersion: kpack.io/v1alpha2
 kind: Image
 metadata:
   name: spring-demo-app-image
   namespace: default
 spec:
-  tag: omocquais/spring-demo-app
-  serviceAccountName: tutorial-service-account
+  tag: #@ "{}/spring-demo-app".format(data.values.dockerusername)
+  serviceAccountName: spring-demo-service-account
   builder:
     name: my-builder
     kind: Builder
