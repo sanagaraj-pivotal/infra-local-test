@@ -7,3 +7,5 @@ RUN curl -LO "https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.44
     chmod u+x ./ytt && \
     mv ./ytt /usr/bin
 RUN apk add jq
+WORKDIR scripts
+COPY image-build-status.sh .
