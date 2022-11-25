@@ -13,4 +13,4 @@ spec:
   source:
     git:
       url: https://gitlab.com/sanagaraj-pivotal/spring-demo.git
-      revision: ac0e2fdfafc48b5213ac638aee0526967b1ccb6b
+      revision: 87f88d4b6700a5843529b9dde05a49f32f2ca304
