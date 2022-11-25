@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t jenkins-node:7 .
+docker build -t jenkins-node:9 .
