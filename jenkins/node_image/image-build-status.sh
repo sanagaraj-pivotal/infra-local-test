@@ -16,8 +16,7 @@ ReadyStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | 
 FailedStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | select(.type=="Ready")| select(.status=="False")' | wc -c | bc)
 #get pod name
 # inspect container logs
-BuilderName=$(kubectl get build -o json | jq -r '.items[] | select(.spec.source.git.revision=="'$GIT_COMMIT'") | .metadata.name')
-BuilderPodName=$(echo $BuilderName-build-pod)
+BuilderPodName=$( kubectl get build -o json | jq -r '.items[] | select(.spec.source.git.revision=="'$GIT_COMMIT'") | .status.podName')
 sleep 2
 kubectl logs -f $BuilderPodName -c analyze
 sleep 2
