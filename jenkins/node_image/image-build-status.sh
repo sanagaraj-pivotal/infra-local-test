@@ -1,6 +1,7 @@
 #!/bin/bash
 
 APP_NAME=spring-demo-app
+GIT_COMMIT=$1
 ReadyStatus=0
 FailedStatus=0
 
@@ -15,7 +16,9 @@ ReadyStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | 
 FailedStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | select(.type=="Ready")| select(.status=="False")' | wc -c | bc)
 #get pod name
 # inspect container logs
-BuilderName=$(kubectl get build -o json | jq -r '.items[] | select(.spec.source.git.revision=="189be85b248b8dbfcca44eede0e1f7ff9d8fc812") | .metadata.name')
+ExtractedRevision=$(echo "'.items[] | select(.spec.source.git.revision==$GIT_COMMIT) | .metadata.name'")
+echo $ExtractedRevision
+BuilderName=$(kubectl get build -o json | jq -r $ExtractedRevision)
 BuilderPodName=$(echo $BuilderName-build-pod)
 sleep 2
 kubectl logs -f $BuilderPodName -c analyze
@@ -31,6 +34,8 @@ sleep 2
 kubectl logs -f $BuilderPodName -c prepare
 sleep 2
 kubectl logs -f $BuilderPodName -c restore
+
+# TODO Manage errors (init container failed)
 
 sleep 2
 # TODO: Dont be here forever, have an upper limit with count

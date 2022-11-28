@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   jenkins:
-    image: dind-jenkins:1
+    image: dind-jenkins:3
     privileged: true
     user: root
     ports:

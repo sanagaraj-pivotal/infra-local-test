@@ -1,3 +1,4 @@
+#@ load("@ytt:data", "data")
 apiVersion: kpack.io/v1alpha2
 kind: Builder
 metadata:
@@ -5,7 +6,7 @@ metadata:
   namespace: default
 spec:
   serviceAccountName: spring-demo-service-account
-  tag: sandeepnvmware/builder-ipzs
+  tag: #@ "{}/builder-ipzs".format(data.values.dockerusername)
   stack:
     name: base
     kind: ClusterStack
