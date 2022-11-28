@@ -12,11 +12,9 @@ FailedStatus=0
 while [ $ReadyStatus -le 0 -a $FailedStatus -le 0 ]
 do
 echo "Image being built, waiting for image status to be ready..."
-ReadyStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | select(.type=="Ready") | select(.status=="True")' | wc -c | bc)
-FailedStatus=$(kubectl get images $APP_NAME -o json | jq '.status.conditions[] | select(.type=="Ready")| select(.status=="False")' | wc -c | bc)
 #get pod name
 # inspect container logs
-BuilderPodName=$( kubectl get build -o json | jq -r '.items[] | select(.spec.source.git.revision=="'$GIT_COMMIT'") | .status.podName')
+BuilderPodName=$(kubectl get build -o json | jq -r '.items[] | select(.spec.source.git.revision=="'$GIT_COMMIT'") | .status.podName')
 sleep 2
 kubectl logs -f $BuilderPodName -c analyze
 sleep 2
@@ -36,6 +34,10 @@ kubectl logs -f $BuilderPodName -c restore
 
 sleep 2
 # TODO: Dont be here forever, have an upper limit with count
+
+ReadyStatus=$(kubectl get images $APP_NAME-$GIT_COMMIT -o json | jq '.status.conditions[] | select(.type=="Ready") | select(.status=="True")' | wc -c | bc)
+FailedStatus=$(kubectl get images $APP_NAME-$GIT_COMMIT -o json | jq '.status.conditions[] | select(.type=="Ready")| select(.status=="False")' | wc -c | bc)
+
 done
 
 if [ $FailedStatus -gt 0 ]
