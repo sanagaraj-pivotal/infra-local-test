@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t jenkins-node:9 .
+docker build -t jenkins-node:latest .
