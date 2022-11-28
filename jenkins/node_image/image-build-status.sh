@@ -46,5 +46,8 @@ then
   exit 1
 else
   echo "Image published"
+  echo "******************** IMAGE ****************************"
+  kubectl get images $APP_NAME-$GIT_COMMIT -o json | jq -r '.status.latestImage'
+  echo "*******************************************************"
 fi
 
