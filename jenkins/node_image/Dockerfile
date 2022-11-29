@@ -7,6 +7,10 @@ RUN curl -LO "https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.44
     chmod u+x ./ytt && \
     mv ./ytt /usr/bin
 RUN apk add jq
+RUN curl -LO "https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.8.0/kp-linux-amd64-0.8.0" \
+    && mv ./kp-linux-amd64-0.8.0 kp && \
+    chmod u+x ./kp && \
+    mv ./kp /usr/bin
 WORKDIR scripts
 COPY image-build-status.sh .
 RUN chmod u+x image-build-status.sh
