@@ -11,6 +11,4 @@ RUN curl -LO "https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.8.0
     && mv ./kp-linux-amd64-0.8.0 kp && \
     chmod u+x ./kp && \
     mv ./kp /usr/bin
-WORKDIR scripts
-COPY builds-check.sh .
-RUN chmod u+x builds-check.sh
+
