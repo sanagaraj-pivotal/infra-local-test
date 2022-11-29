@@ -12,5 +12,5 @@ RUN curl -LO "https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.8.0
     chmod u+x ./kp && \
     mv ./kp /usr/bin
 WORKDIR scripts
-COPY image-build-status.sh .
-RUN chmod u+x image-build-status.sh
+COPY builds-check.sh .
+RUN chmod u+x builds-check.sh
