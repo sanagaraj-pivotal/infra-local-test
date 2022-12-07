@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+git status | grep -q modified
 IS_DIFF=$(git diff origin/main main | wc -c | bc)
 if [ $IS_DIFF -eq 0 ]
 then
