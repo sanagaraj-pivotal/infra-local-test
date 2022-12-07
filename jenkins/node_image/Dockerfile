@@ -14,3 +14,7 @@ RUN curl -LO "https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.8.0
 RUN apk add git
 COPY push-only-if-changes-found.sh /usr/bin
 RUN chmod u+x /usr/bin/push-only-if-changes-found.sh
+RUN curl -LO "https://github.com/vmware-tanzu/carvel-kapp/releases/download/v0.54.1/kapp-linux-amd64" \
+    && mv ./kapp-linux-amd64 kapp && \
+    chmod u+x ./kapp && \
+    mv ./kapp /usr/bin
