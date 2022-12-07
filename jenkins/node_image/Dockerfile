@@ -12,4 +12,5 @@ RUN curl -LO "https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.8.0
     chmod u+x ./kp && \
     mv ./kp /usr/bin
 RUN apk add git
-
+COPY push-only-if-changes-found.sh /usr/bin
+RUN chmod u+x /usr/bin/push-only-if-changes-found.sh
