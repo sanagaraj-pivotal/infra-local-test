@@ -17,4 +17,6 @@ spec:
     - group:
         - id: paketo-buildpacks/java
     - group:
+        - id: paketo-buildpacks/web-servers
+    - group:
         - id: paketo-buildpacks/nodejs
