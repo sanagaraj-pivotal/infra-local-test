@@ -1,0 +1,16 @@
+#@ load("@ytt:data", "data")
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: #@ "angular-app-{}".format(data.values.gitrevision)
+  namespace: default
+spec:
+  tag: #@ "{}/angular-app:{}".format(data.values.dockerusername, data.values.gitrevision)
+  serviceAccountName: spring-demo-service-account
+  builder:
+    name: my-builder
+    kind: Builder
+  source:
+    git:
+      url: https://gitlab.com/sanagaraj-pivotal/angular-demo-app.git
+      revision: #@ data.values.gitrevision
