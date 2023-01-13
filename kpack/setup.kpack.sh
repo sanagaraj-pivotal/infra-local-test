@@ -11,4 +11,5 @@ kubectl apply -f store.yaml
 kubectl apply -f stack.yaml
 ytt -f builder.yaml --data-value dockerusername=$1 | kubectl apply -f -
 #ytt -f image.yaml --data-value dockerusername=$1 --data-value gitrevision=$3 | kubectl apply -f -
-ytt -f image-angular.yaml --data-value dockerusername=$1 --data-value gitrevision=$3 | kubectl apply -f -
+#ytt -f image-angular.yaml --data-value dockerusername=$1 --data-value gitrevision=$3 | kubectl apply -f -
+# To build angular image use angular-demo-app/build-image.sh
